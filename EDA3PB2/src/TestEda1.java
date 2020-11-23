@@ -81,12 +81,12 @@ public class TestEda1 {
 		assertTrue(actual.habilitarPremium(Premium.FUTBOL, celeste));		
 	}
 	
-	@Test 
-	public void  queUnClienteDeTelefoniaNoPuedaHabilitar () {		
+	@Test (expected = NoEsClienteConCableException.class)
+	public void  queUnClienteDeTelefoniaNoPuedaHabilitar () throws NoEsClienteConCableException {		
 		Cliente celeste = new ClienteTelefonia(1000, "Camila", "11", "63544437");
 		Empresa actual = new Empresa("Telecomunications");
 		
-		assertTrue(actual.habilitarPremium2(Premium.FUTBOL, celeste));		
+		assertFalse(actual.habilitarPremium(Premium.FUTBOL, celeste));		
 	}
 	
 }

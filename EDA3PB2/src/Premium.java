@@ -1,5 +1,4 @@
 
-public enum Premium {
-	FUTBOL,
-	BASQUET
+public enum Premium{
+	FUTBOL
 }

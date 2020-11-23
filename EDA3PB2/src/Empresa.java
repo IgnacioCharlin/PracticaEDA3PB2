@@ -30,52 +30,11 @@ public class Empresa {
 	}
 	
 	public Boolean habilitarPremium (Premium habilitar , Cliente nuevo) throws NoEsClienteConCableException{
-		Boolean SePudo = false;
-		switch (habilitar) {
-		case FUTBOL:
-			if (nuevo.getPremiumFutbol()== false && agregarCliente(nuevo)==true) {
-				nuevo.setPremiumFutbol(true);
-				SePudo=true;
-			}
-			
-			break;
-		case BASQUET:	
-			if (nuevo.getPremiumBasquet()== false && agregarCliente(nuevo)==true) {
-				nuevo.setPremiumBasquet(true);
-				SePudo=true;
-			}
-			break;
-		}
-			
-		if (SePudo == true) {
+		if (nuevo instanceof ClienteCable || nuevo instanceof ClienteTri && habilitar.equals("SFUTBOL")) {
+			this.ClientesIngresados.put(nuevo.getCod_cliente(), nuevo);
 			return true;
 		}else {
 			throw new NoEsClienteConCableException();
 		}
-		
-	}
-	public Boolean habilitarPremium2 (Premium habilitar , Cliente nuevo) throws NoEsClienteConCableException{
-		throw new NoEsClienteConCableException();
-		Boolean SePudo = false;
-		try {
-			switch (habilitar) {
-			case FUTBOL:
-				if (nuevo.getPremiumFutbol()== false && agregarCliente(nuevo)==true) {
-					nuevo.setPremiumFutbol(true);
-					SePudo=true;
-				}
-				
-				break;
-			case BASQUET:	
-				if (nuevo.getPremiumBasquet()== false && agregarCliente(nuevo)==true) {
-					nuevo.setPremiumBasquet(true);
-					SePudo=true;
-				}
-				break;
-			}
-		} catch (Exception NoEsClienteConCableException) {
-			// TODO: handle exception
-		}
-		
 	}
 }
