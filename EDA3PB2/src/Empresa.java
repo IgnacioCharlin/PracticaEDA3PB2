@@ -1,0 +1,81 @@
+import java.util.HashMap;
+
+public class Empresa {
+	private String nombre;
+	private HashMap<Integer, Cliente> ClientesIngresados;
+	public Empresa(String nombre) {
+		super();
+		this.nombre = nombre;
+		ClientesIngresados = new HashMap<>();
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	public Boolean agregarCliente(Cliente nuevo) {
+		if (nuevo != null) {
+			ClientesIngresados.put(nuevo.getCod_cliente(), nuevo);
+			return true;
+		}
+		return false;
+	}
+	 
+	public Integer getCantidadAbonados() {
+		return ClientesIngresados.size();
+	}
+	
+	public Boolean habilitarPremium (Premium habilitar , Cliente nuevo) throws NoEsClienteConCableException{
+		Boolean SePudo = false;
+		switch (habilitar) {
+		case FUTBOL:
+			if (nuevo.getPremiumFutbol()== false && agregarCliente(nuevo)==true) {
+				nuevo.setPremiumFutbol(true);
+				SePudo=true;
+			}
+			
+			break;
+		case BASQUET:	
+			if (nuevo.getPremiumBasquet()== false && agregarCliente(nuevo)==true) {
+				nuevo.setPremiumBasquet(true);
+				SePudo=true;
+			}
+			break;
+		}
+			
+		if (SePudo == true) {
+			return true;
+		}else {
+			throw new NoEsClienteConCableException();
+		}
+		
+	}
+	public Boolean habilitarPremium2 (Premium habilitar , Cliente nuevo) throws NoEsClienteConCableException{
+		throw new NoEsClienteConCableException();
+		Boolean SePudo = false;
+		try {
+			switch (habilitar) {
+			case FUTBOL:
+				if (nuevo.getPremiumFutbol()== false && agregarCliente(nuevo)==true) {
+					nuevo.setPremiumFutbol(true);
+					SePudo=true;
+				}
+				
+				break;
+			case BASQUET:	
+				if (nuevo.getPremiumBasquet()== false && agregarCliente(nuevo)==true) {
+					nuevo.setPremiumBasquet(true);
+					SePudo=true;
+				}
+				break;
+			}
+		} catch (Exception NoEsClienteConCableException) {
+			// TODO: handle exception
+		}
+		
+	}
+}
